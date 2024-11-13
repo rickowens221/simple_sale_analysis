@@ -1,0 +1,40 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Загрузка данных
+data = pd.read_csv('../data/sales_data.csv', parse_dates=['Date'])
+print("Данные загружены:")
+print(data.head())
+
+# Очистка данных
+data.dropna(inplace=True)
+print(f"Длина данных после очистки: {data.shape[0]} записей")
+
+# Анализ продаж по регионам
+sales_region = data.groupby('Region')['Total Revenue'].sum().reset_index()
+print("Продажи по регионам:")
+print(sales_region)
+
+# Визуализация продаж по регионам
+plt.figure(figsize=(10,6))
+sns.barplot(x='Region', y='Total Revenue', data=sales_region, palette='viridis')
+plt.title('Общие Продажи по Регионам')
+plt.xlabel('Регион')
+plt.ylabel('Общий Доход')
+plt.tight_layout()
+plt.show()
+
+# Анализ трендов продаж по времени
+sales_trend = data.groupby('Date')['Total Revenue'].sum().reset_index()
+print("Тренды продаж по датам:")
+print(sales_trend.tail())
+
+# Визуализация трендов продаж по времени
+plt.figure(figsize=(12,6))
+sns.lineplot(x='Date', y='Total Revenue', data=sales_trend, marker='o')
+plt.title('Тренды Продаж по Времени')
+plt.xlabel('Дата')
+plt.ylabel('Общий Доход')
+plt.tight_layout()
+plt.show()

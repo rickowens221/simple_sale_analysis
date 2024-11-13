@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Data (если не хотите загружать исходные данные)
+data/
+
+# Plots
+plots/
